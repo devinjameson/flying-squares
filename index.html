@@ -1,0 +1,121 @@
+<html>
+  <p>Use your arrow keys to make cool stuff happen</p>
+</html>
+<canvas id="gc" width="240" height="240"></canvas>
+<script>
+  window.onload = function () {
+    canv = document.getElementById("gc");
+    ctx = canv.getContext("2d");
+    document.addEventListener("keydown", keyPush);
+    setInterval(game, 1000 / 20);
+  };
+  background = "lightgrey";
+  blocksize = 10;
+  c1 = "red";
+  c2 = "blue";
+  c3 = "green";
+  c4 = "orange";
+  c5 = "yellow";
+  c6 = "purple";
+  c7 = "black";
+  c8 = "white";
+  c9 = "maroon";
+  c10 = "lightblue";
+  delta = -20;
+  p1 = { x: 20, y: 10 };
+  p2 = { x: 40, y: 10 };
+  p3 = { x: 60, y: 10 };
+  p4 = { x: 80, y: 10 };
+  p5 = { x: 100, y: 10 };
+  p6 = { x: 120, y: 10 };
+  p7 = { x: 140, y: 10 };
+  p8 = { x: 160, y: 10 };
+  p9 = { x: 180, y: 10 };
+  p10 = { x: 200, y: 10 };
+  a1 = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10];
+  function game() {
+    console.log(delta);
+    p1.y += 2 + delta;
+    p2.y += 4 + delta;
+    p3.y += 6 + delta;
+    p4.y += 8 + delta;
+    p5.y += 10 + delta;
+    p6.y += 12 + delta;
+    p7.y += 14 + delta;
+    p8.y += 16 + delta;
+    p9.y += 18 + delta;
+    p10.y += 20 + delta;
+    p1.x += 2 + delta + 10;
+    p2.x += 4 + delta + 10;
+    p3.x += 6 + delta + 10;
+    p4.x += 8 + delta + 10;
+    p5.x += 10 + delta + 10;
+    p6.x += 12 + delta + 10;
+    p7.x += 14 + delta + 10;
+    p8.x += 16 + delta + 10;
+    p9.x += 18 + delta + 10;
+    p10.x += 20 + delta + 10;
+    for (let i = 0; i < a1.length; i++) {
+      if (a1[i].y > canv.height) {
+        a1[i].y = 0;
+      }
+      if (a1[i].y < 0) {
+        a1[i].y = canv.height;
+      }
+    }
+    for (let i = 0; i < a1.length; i++) {
+      if (a1[i].x > canv.width) {
+        a1[i].x = 0;
+      }
+      if (a1[i].x < 0) {
+        a1[i].x = canv.width;
+      }
+    }
+    ctx.fillStyle = background;
+    ctx.fillRect(0, 0, canv.width, canv.height);
+    ctx.fillStyle = c1;
+    ctx.fillRect(p1.x, p1.y, blocksize, blocksize);
+    ctx.fillStyle = c2;
+    ctx.fillRect(p2.x, p2.y, blocksize, blocksize);
+    ctx.fillStyle = c3;
+    ctx.fillRect(p3.x, p3.y, blocksize, blocksize);
+    ctx.fillStyle = c4;
+    ctx.fillRect(p4.x, p4.y, blocksize, blocksize);
+    ctx.fillStyle = c5;
+    ctx.fillRect(p5.x, p5.y, blocksize, blocksize);
+    ctx.fillStyle = c6;
+    ctx.fillRect(p6.x, p6.y, blocksize, blocksize);
+    ctx.fillStyle = c7;
+    ctx.fillRect(p7.x, p7.y, blocksize, blocksize);
+    ctx.fillStyle = c8;
+    ctx.fillRect(p8.x, p8.y, blocksize, blocksize);
+    ctx.fillStyle = c9;
+    ctx.fillRect(p9.x, p9.y, blocksize, blocksize);
+    ctx.fillStyle = c10;
+    ctx.fillRect(p10.x, p10.y, blocksize, blocksize);
+  }
+  function keyPush(evt) {
+    switch (evt.keyCode) {
+      case 37:
+        if (delta > -34) {
+          delta -= 2;
+        }
+        break;
+      case 38:
+        if (blocksize < 50) {
+          blocksize += 5;
+        }
+        break;
+      case 39:
+        if (delta < -6) {
+          delta += 2;
+        }
+        break;
+      case 40:
+        if (blocksize > 5) {
+          blocksize -= 5;
+        }
+        break;
+    }
+  }
+</script>
